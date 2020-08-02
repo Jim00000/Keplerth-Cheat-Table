@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"===== Cheat Table for Keplerth alpha 24b (Steam) by Jim00000 ====="</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>30</ID>
+          <Description>"Scripts"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>38</ID>
+              <Description>"Max Items Durability"</Description>
+              <LastState Activated="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+aobScanRegion(INJECTION_DecDurabilityWhenAttack, Keplerth:ItemData:DecDurabilityWhenAttack, Keplerth:ItemData:DecDurabilityWhenAttack+500, 2B 45 10 89 43 38)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+registersymbol(INJECTION_DecDurabilityWhenAttack)
+
+newmem:
+
+code:
+  // Disable :
+  // sub eax,[ebp+10]
+  // mov [ebx+38],eax
+
+  // get maxDurability
+  mov eax, [ebx+34]
+  // set maxDurability to curDurability
+  mov [ebx+38], eax
+
+  jmp return
+
+INJECTION_DecDurabilityWhenAttack:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+INJECTION_DecDurabilityWhenAttack:
+  db 2B 45 10 89 43 38
+
+unregistersymbol(INJECTION_DecDurabilityWhenAttack)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Keplerth:ItemData:DecDurabilityWhenAttack+d 
+
+07424014: 83 EC 0C                 -  sub esp,0C
+07424017: 53                       -  push ebx
+07424018: 8D 6D 00                 -  lea ebp,[ebp+00]
+0742401B: E8 20 CB D2 FA           -  call 02150B40
+07424020: 55                       -  push ebp
+07424021: 8B EC                    -  mov ebp,esp
+07424023: 53                       -  push ebx
+07424024: 83 EC 24                 -  sub esp,24
+07424027: 8B 5D 08                 -  mov ebx,[ebp+08]
+0742402A: 8B 43 38                 -  mov eax,[ebx+38]
+// ---------- INJECTING HERE ----------
+0742402D: 2B 45 10                 -  sub eax,[ebp+10]
+07424030: 89 43 38                 -  mov [ebx+38],eax
+// ---------- DONE INJECTING  ----------
+07424033: 85 C0                    -  test eax,eax
+07424035: 7F 0C                    -  jg 07424043
+07424037: C7 43 38 00 00 00 00     -  mov [ebx+38],00000000
+0742403E: E9 39 00 00 00           -  jmp 0742407C
+07424043: 83 7D 0C 0A              -  cmp dword ptr [ebp+0C],0A
+07424047: 7D 17                    -  jnl 07424060
+07424049: C7 44 24 08 48 B9 DE 16  -  mov [esp+08],16DEB948
+07424051: 8B 45 0C                 -  mov eax,[ebp+0C]
+07424054: 89 44 24 04              -  mov [esp+04],eax
+07424058: 89 1C 24                 -  mov [esp],ebx
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>39</ID>
+              <Description>"Max Equips Durability"</Description>
+              <LastState Activated="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+aobScanRegion(INJECTION_ItemData_DecEquipDurabilityOnHit, Keplerth:ItemData:DecEquipDurabilityOnHit, Keplerth:ItemData:DecEquipDurabilityOnHit+500, 2B 45 10 89 43 38)
+//aobscan(INJECTION_ItemData_DecEquipDurabilityOnHit,2B 45 10 89 43 38) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  // Disable :
+  // sub eax,[ebp+10]
+  // mov [ebx+38],eax
+
+  // Get maxDurability
+  mov eax, [ebx+34]
+  // Set maxDurability to curDurability
+  mov [ebx+38], eax
+
+  jmp return
+
+INJECTION_ItemData_DecEquipDurabilityOnHit:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECTION_ItemData_DecEquipDurabilityOnHit)
+
+[DISABLE]
+
+INJECTION_ItemData_DecEquipDurabilityOnHit:
+  db 2B 45 10 89 43 38
+
+unregistersymbol(INJECTION_ItemData_DecEquipDurabilityOnHit)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Keplerth:ItemData:DecEquipDurabilityOnHit+d 
+
+074283FF: E8 1C B3 07 01           -  call 084A3720
+07428404: C9                       -  leave 
+07428405: C3                       -  ret 
+07428406: 00 00                    -  add [eax],al
+07428408: 55                       -  push ebp
+07428409: 8B EC                    -  mov ebp,esp
+0742840B: 53                       -  push ebx
+0742840C: 83 EC 24                 -  sub esp,24
+0742840F: 8B 5D 08                 -  mov ebx,[ebp+08]
+07428412: 8B 43 38                 -  mov eax,[ebx+38]
+// ---------- INJECTING HERE ----------
+07428415: 2B 45 10                 -  sub eax,[ebp+10]
+07428418: 89 43 38                 -  mov [ebx+38],eax
+// ---------- DONE INJECTING  ----------
+0742841B: 85 C0                    -  test eax,eax
+0742841D: 7F 28                    -  jg 07428447
+0742841F: 8B 05 20 35 8A 04        -  mov eax,[048A3520]
+07428425: C7 44 24 08 01 00 00 00  -  mov [esp+08],00000001
+0742842D: 8B 4D 0C                 -  mov ecx,[ebp+0C]
+07428430: 89 4C 24 04              -  mov [esp+04],ecx
+07428434: 89 04 24                 -  mov [esp],eax
+07428437: 39 00                    -  cmp [eax],eax
+07428439: 8B C0                    -  mov eax,eax
+0742843B: E8 10 00 00 00           -  call 07428450
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>47</ID>
+              <Description>"No Item Consumption"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+aobScanRegion(INJECTION_BaseBag_ConsumeItem,Keplerth:BaseBag:ConsumeItem, Keplerth:BaseBag:ConsumeItem+500,2B 4D 10 89 48 3C)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+registersymbol(INJECTION_BaseBag_ConsumeItem)
+
+newmem:
+
+code:
+  // sub ecx,[ebp+10]
+  mov [eax+3C],ecx
+  jmp return
+
+INJECTION_BaseBag_ConsumeItem:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+INJECTION_BaseBag_ConsumeItem:
+  db 2B 4D 10 89 48 3C
+
+unregistersymbol(INJECTION_BaseBag_ConsumeItem)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Keplerth:BaseBag:ConsumeItem+216 
+
+085F7ED7: 89 04 24                 -  mov [esp],eax
+085F7EDA: 90                       -  nop 
+085F7EDB: E8 28 6D 8B 02           -  call 0AEAEC08
+085F7EE0: 89 74 24 04              -  mov [esp+04],esi
+085F7EE4: 89 04 24                 -  mov [esp],eax
+085F7EE7: 39 00                    -  cmp [eax],eax
+085F7EE9: 8B C0                    -  mov eax,eax
+085F7EEB: E8 A8 7A 8B 02           -  call 0AEAF998
+085F7EF0: 89 45 F0                 -  mov [ebp-10],eax
+085F7EF3: 8B 48 3C                 -  mov ecx,[eax+3C]
+// ---------- INJECTING HERE ----------
+085F7EF6: 2B 4D 10                 -  sub ecx,[ebp+10]
+085F7EF9: 89 48 3C                 -  mov [eax+3C],ecx
+// ---------- DONE INJECTING  ----------
+085F7EFC: 8B 45 F0                 -  mov eax,[ebp-10]
+085F7EFF: 8B 40 3C                 -  mov eax,[eax+3C]
+085F7F02: 85 C0                    -  test eax,eax
+085F7F04: 0F 8F 9C 00 00 00        -  jg 085F7FA6
+085F7F0A: 8B 43 44                 -  mov eax,[ebx+44]
+085F7F0D: 3D 01 00 00 00           -  cmp eax,00000001
+085F7F12: 75 34                    -  jne 085F7F48
+085F7F14: 83 FE 03                 -  cmp esi,03
+085F7F17: 7D 2F                    -  jnl 085F7F48
+085F7F19: 8B 05 E4 DE 70 0D        -  mov eax,[0D70DEE4]
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>49</ID>
+              <Description>"Unlock All DNA Items"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+
+aobscanRegion(INJECTION_DNAItem_IsUnlock, DNAItem:IsUnlock, DNAItem:IsUnlock+50, 55 8B EC 83 EC 18 8B 45 08 8B 40 64 89)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+registersymbol(INJECTION_DNAItem_IsUnlock)
+
+newmem:
+  mov eax, 1
+  ret
+
+code:
+  push ebp
+  mov ebp,esp
+  sub esp,18
+  jmp return
+
+INJECTION_DNAItem_IsUnlock:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+INJECTION_DNAItem_IsUnlock:
+  db 55 8B EC 83 EC 18
+
+unregistersymbol(INJECTION_DNAItem_IsUnlock)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Keplerth:DNAItem:IsUnlock 
+
+06C6EE79: 6A 57                    -  push 57
+06C6EE7B: 68 8C 01 00 00           -  push 0000018C
+06C6EE80: E8 7B 22 7F F9           -  call 00461100
+06C6EE85: 6A 7C                    -  push 7C
+06C6EE87: EB F2                    -  jmp 06C6EE7B
+06C6EE89: 68 CB 00 00 00           -  push 000000CB
+06C6EE8E: EB EB                    -  jmp 06C6EE7B
+06C6EE90: 68 EC 00 00 00           -  push 000000EC
+06C6EE95: EB E4                    -  jmp 06C6EE7B
+06C6EE97: 00 55                    - db 00 55  // SHORTENED TO HIT INJECTION FROM:  add [ebp-75],dl
+// ---------- INJECTING HERE ----------
+06C6EE99: 8B EC                    -  mov ebp,esp
+06C6EE9B: 83 EC 18                 -  sub esp,18
+// ---------- DONE INJECTING  ----------
+06C6EE9E: 8B 45 08                 -  mov eax,[ebp+08]
+06C6EEA1: 8B 40 64                 -  mov eax,[eax+64]
+06C6EEA4: 89 04 24                 -  mov [esp],eax
+06C6EEA7: E8 04 00 00 00           -  call 06C6EEB0
+06C6EEAC: C9                       -  leave 
+06C6EEAD: C3                       -  ret 
+06C6EEAE: 00 00                    -  add [eax],al
+06C6EEB0: 55                       -  push ebp
+06C6EEB1: 8B EC                    -  mov ebp,esp
+06C6EEB3: 83 EC 18                 -  sub esp,18
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"Pointer (Keplerth.Character)"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanRegion(INJECTION_PlayerHunger_Update, Keplerth:PlayerHunger:Update, Keplerth:PlayerHunger:Update+500, 8B 80 84 02 00 00 85 C0 0F 8E 80)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(lpBasePointer)
+
+registersymbol(lpBasePointer)
+registersymbol(INJECTION_PlayerHunger_Update)
+
+newmem:
+  mov [lpBasePointer], eax
+code:
+  mov eax,[eax+00000284]
+  jmp return
+
+lpBasePointer:
+  dq 0
+
+INJECTION_PlayerHunger_Update:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+INJECTION_PlayerHunger_Update:
+  db 8B 80 84 02 00 00
+
+unregistersymbol(lpBasePointer)
+unregistersymbol(INJECTION_PlayerHunger_Update)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Keplerth:PlayerHunger:Update+48 
+
+0851345E: 0F 84 B4 00 00 00     -  je 08513518
+08513464: 8B 47 0C              -  mov eax,[edi+0C]
+08513467: 8B C8                 -  mov ecx,eax
+08513469: 39 09                 -  cmp [ecx],ecx
+0851346B: 8B 80 80 02 00 00     -  mov eax,[eax+00000280]
+08513471: 85 C0                 -  test eax,eax
+08513473: 0F 8E 9F 00 00 00     -  jng 08513518
+08513479: 8B 47 0C              -  mov eax,[edi+0C]
+0851347C: 8B C8                 -  mov ecx,eax
+0851347E: 39 09                 -  cmp [ecx],ecx
+// ---------- INJECTING HERE ----------
+08513480: 8B 80 84 02 00 00     -  mov eax,[eax+00000284]
+// ---------- DONE INJECTING  ----------
+08513486: 85 C0                 -  test eax,eax
+08513488: 0F 8E 80 00 00 00     -  jng 0851350E
+0851348E: 89 3C 24              -  mov [esp],edi
+08513491: 8B C0                 -  mov eax,eax
+08513493: E8 B0 00 00 00        -  call 08513548
+08513498: D9 47 2C              -  fld dword ptr [edi+2C]
+0851349B: D9 5D F8              -  fstp dword ptr [ebp-08]
+0851349E: D9 45 F8              -  fld dword ptr [ebp-08]
+085134A1: D9 5D F8              -  fstp dword ptr [ebp-08]
+085134A4: D9 45 F8              -  fld dword ptr [ebp-08]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>27</ID>
+              <Description>"Max HP"</Description>
+              <LastState Value="10000" RealAddress="16D70278"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>lpBasePointer</Address>
+              <Offsets>
+                <Offset>278</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>28</ID>
+              <Description>"HP"</Description>
+              <LastState Value="10000" RealAddress="16D7027C"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>lpBasePointer</Address>
+              <Offsets>
+                <Offset>27C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"Max Hunger"</Description>
+              <LastState Value="36000" RealAddress="16D70280"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>lpBasePointer</Address>
+              <Offsets>
+                <Offset>280</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"Hunger"</Description>
+              <LastState Value="36000" Activated="1" RealAddress="16D70284"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>lpBasePointer</Address>
+              <Offsets>
+                <Offset>284</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>44</ID>
+          <Description>"Pointer (Kepkerth.Tween)"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanRegion(INJECTION_TweenText_Update, Keplerth:TweenText:Update, Keplerth:TweenText:Update+500, 8B 4F 1C 3B C1 0F 84)
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(lpBaseOfTweenText)
+
+registersymbol(INJECTION_TweenText_Update)
+registersymbol(lpBaseOfTweenText)
+
+newmem:
+  mov [lpBaseOfTweenText], edi
+code:
+  mov ecx,[edi+1C]
+  cmp eax,ecx
+  jmp return
+
+lpBaseOfTweenText:
+  dq 0
+
+INJECTION_TweenText_Update:
+  jmp newmem
+return:
+
+[DISABLE]
+
+INJECTION_TweenText_Update:
+  db 8B 4F 1C 3B C1
+
+unregistersymbol(INJECTION_TweenText_Update)
+unregistersymbol(lpBaseOfTweenText)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Keplerth:TweenText:Update+2a 
+
+0B429F24: 81 EC B4 00 00 00     -  sub esp,000000B4
+0B429F2A: 8B 7D 08              -  mov edi,[ebp+08]
+0B429F2D: 8B C0                 -  mov eax,eax
+0B429F2F: E8 A4 5C FF FF        -  call 0B41FBD8
+0B429F34: D9 47 18              -  fld dword ptr [edi+18]
+0B429F37: DF F1                 -  fcomip st(0),st(1)
+0B429F39: DD D8                 -  fstp st(0)
+0B429F3B: 0F 8A 94 00 00 00     -  jp 0B429FD5
+0B429F41: 0F 87 8E 00 00 00     -  ja 0B429FD5
+0B429F47: 8B 47 20              -  mov eax,[edi+20]
+// ---------- INJECTING HERE ----------
+0B429F4A: 8B 4F 1C              -  mov ecx,[edi+1C]
+0B429F4D: 3B C1                 -  cmp eax,ecx
+// ---------- DONE INJECTING  ----------
+0B429F4F: 0F 84 53 02 00 00     -  je 0B42A1A8
+0B429F55: 8B 47 1C              -  mov eax,[edi+1C]
+0B429F58: 89 47 20              -  mov [edi+20],eax
+0B429F5B: 8B 47 0C              -  mov eax,[edi+0C]
+0B429F5E: 89 45 88              -  mov [ebp-78],eax
+0B429F61: 85 FF                 -  test edi,edi
+0B429F63: 0F 84 54 02 00 00     -  je 0B42A1BD
+0B429F69: 8D 47 20              -  lea eax,[edi+20]
+0B429F6C: 89 04 24              -  mov [esp],eax
+0B429F6F: E8 0C 59 EA FB        -  call 072CF880
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>43</ID>
+              <Description>"Tween"</Description>
+              <LastState Value="36" RealAddress="17CCEDFC"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>lpBaseOfTweenText</Address>
+              <Offsets>
+                <Offset>1c</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="Player's data structure" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Float" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" RLECount="217" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="872" Vartype="Float" Bytesize="4" RLECount="2" DisplayMethod="Signed Integer"/>
+        <Element Offset="880" Vartype="4 Bytes" Bytesize="4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="884" Vartype="Float" Bytesize="4" RLECount="2" DisplayMethod="Signed Integer"/>
+        <Element Offset="892" Vartype="4 Bytes" Bytesize="4" RLECount="794" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" Description="Length" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="12" Vartype="Unicode String" Bytesize="128" Description="Value" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>
