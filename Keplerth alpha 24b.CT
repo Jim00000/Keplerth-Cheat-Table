@@ -366,7 +366,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>27</ID>
               <Description>"Move Speed"</Description>
-              <LastState Value="2" RealAddress="179431C0"/>
+              <LastState Value="2" RealAddress="1683D1C0"/>
               <VariableType>Float</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -376,7 +376,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>51</ID>
               <Description>"Move Speed Multiplier"</Description>
-              <LastState Value="1" RealAddress="179431C4"/>
+              <LastState Value="2.400000095" RealAddress="1683D1C4"/>
               <VariableType>Float</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -386,7 +386,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>50</ID>
               <Description>"Max HP"</Description>
-              <LastState Value="10000" RealAddress="17943278"/>
+              <LastState Value="10000" RealAddress="1683D278"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -396,7 +396,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>28</ID>
               <Description>"HP"</Description>
-              <LastState Value="10000" RealAddress="1794327C"/>
+              <LastState Value="10000" RealAddress="1683D27C"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -406,7 +406,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>25</ID>
               <Description>"Max Hunger"</Description>
-              <LastState Value="36000" RealAddress="17943280"/>
+              <LastState Value="36000" RealAddress="1683D280"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -416,7 +416,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>26</ID>
               <Description>"Hunger"</Description>
-              <LastState Value="36000" Activated="1" RealAddress="17943284"/>
+              <LastState Value="36000" Activated="1" RealAddress="1683D284"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -426,83 +426,84 @@ dealloc(newmem)
           </CheatEntries>
         </CheatEntry>
         <CheatEntry>
-          <ID>44</ID>
-          <Description>"Pointer (Kepkerth.Tween)"</Description>
-          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState/>
+          <ID>53</ID>
+          <Description>"Pointer (Kepkerth.PlayerState)"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 
-aobscanRegion(INJECTION_TweenText_Update, Keplerth:TweenText:Update, Keplerth:TweenText:Update+500, 8B 4F 1C 3B C1 0F 84)
+aobscanRegion(INJECTION_PlayerState_set_Money, Keplerth:PlayerState:set_Money, Keplerth:PlayerState:set_Money+500, 89 4E 38 89 4C 24 04) // should be unique
 alloc(newmem,$1000)
 
 label(code)
 label(return)
-label(lpBaseOfTweenText)
+label(lpBaseOfPlayerState)
 
-registersymbol(INJECTION_TweenText_Update)
-registersymbol(lpBaseOfTweenText)
+registersymbol(INJECTION_PlayerState_set_Money)
+registersymbol(lpBaseOfPlayerState)
 
 newmem:
-  mov [lpBaseOfTweenText], edi
+  mov [lpBaseOfPlayerState], esi
 code:
-  mov ecx,[edi+1C]
-  cmp eax,ecx
+  mov [esi+38],ecx
+  mov [esp+04],ecx
   jmp return
 
-lpBaseOfTweenText:
+lpBaseOfPlayerState:
   dq 0
 
-INJECTION_TweenText_Update:
+INJECTION_PlayerState_set_Money:
   jmp newmem
+  nop 2
 return:
 
 [DISABLE]
 
-INJECTION_TweenText_Update:
-  db 8B 4F 1C 3B C1
+INJECTION_PlayerState_set_Money:
+  db 89 4E 38 89 4C 24 04
 
-unregistersymbol(INJECTION_TweenText_Update)
-unregistersymbol(lpBaseOfTweenText)
+unregistersymbol(INJECTION_PlayerState_set_Money)
+unregistersymbol(lpBaseOfPlayerState)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: Keplerth:TweenText:Update+2a 
+// ORIGINAL CODE - INJECTION POINT: Keplerth:PlayerState:set_Money+10 
 
-0B429F24: 81 EC B4 00 00 00     -  sub esp,000000B4
-0B429F2A: 8B 7D 08              -  mov edi,[ebp+08]
-0B429F2D: 8B C0                 -  mov eax,eax
-0B429F2F: E8 A4 5C FF FF        -  call 0B41FBD8
-0B429F34: D9 47 18              -  fld dword ptr [edi+18]
-0B429F37: DF F1                 -  fcomip st(0),st(1)
-0B429F39: DD D8                 -  fstp st(0)
-0B429F3B: 0F 8A 94 00 00 00     -  jp 0B429FD5
-0B429F41: 0F 87 8E 00 00 00     -  ja 0B429FD5
-0B429F47: 8B 47 20              -  mov eax,[edi+20]
+0737E473: C9                       -  leave 
+0737E474: C3                       -  ret 
+0737E475: 00 00                    -  add [eax],al
+0737E477: 00 55 8B                 -  add [ebp-75],dl
+0737E47A: EC                       -  in al,dx
+0737E47B: 56                       -  push esi
+0737E47C: 83 EC 24                 -  sub esp,24
+0737E47F: 8B 75 08                 -  mov esi,[ebp+08]
+0737E482: 8B 46 38                 -  mov eax,[esi+38]
+0737E485: 8B 4D 0C                 -  mov ecx,[ebp+0C]
 // ---------- INJECTING HERE ----------
-0B429F4A: 8B 4F 1C              -  mov ecx,[edi+1C]
-0B429F4D: 3B C1                 -  cmp eax,ecx
+0737E488: 89 4E 38                 -  mov [esi+38],ecx
+0737E48B: 89 4C 24 04              -  mov [esp+04],ecx
 // ---------- DONE INJECTING  ----------
-0B429F4F: 0F 84 53 02 00 00     -  je 0B42A1A8
-0B429F55: 8B 47 1C              -  mov eax,[edi+1C]
-0B429F58: 89 47 20              -  mov [edi+20],eax
-0B429F5B: 8B 47 0C              -  mov eax,[edi+0C]
-0B429F5E: 89 45 88              -  mov [ebp-78],eax
-0B429F61: 85 FF                 -  test edi,edi
-0B429F63: 0F 84 54 02 00 00     -  je 0B42A1BD
-0B429F69: 8D 47 20              -  lea eax,[edi+20]
-0B429F6C: 89 04 24              -  mov [esp],eax
-0B429F6F: E8 0C 59 EA FB        -  call 072CF880
+0737E48F: 89 04 24                 -  mov [esp],eax
+0737E492: 90                       -  nop 
+0737E493: E8 78 00 00 00           -  call 0737E510
+0737E498: 8B 05 10 35 72 00        -  mov eax,[00723510]
+0737E49E: 89 04 24                 -  mov [esp],eax
+0737E4A1: 39 00                    -  cmp [eax],eax
+0737E4A3: E8 20 9F F9 02           -  call 0A3183C8
+0737E4A8: 8B 05 40 5F C5 17        -  mov eax,[17C55F40]
+0737E4AE: 3D 11 00 00 00           -  cmp eax,00000011
+0737E4B3: 75 33                    -  jne 0737E4E8
 }
 </AssemblerScript>
           <CheatEntries>
             <CheatEntry>
-              <ID>43</ID>
+              <ID>54</ID>
               <Description>"Tween"</Description>
+              <LastState Value="440" RealAddress="0D790888"/>
               <VariableType>4 Bytes</VariableType>
-              <Address>lpBaseOfTweenText</Address>
+              <Address>lpBaseOfPlayerState</Address>
               <Offsets>
-                <Offset>1c</Offset>
+                <Offset>38</Offset>
               </Offsets>
             </CheatEntry>
           </CheatEntries>
