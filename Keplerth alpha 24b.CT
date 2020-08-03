@@ -365,8 +365,28 @@ dealloc(newmem)
           <CheatEntries>
             <CheatEntry>
               <ID>27</ID>
+              <Description>"Move Speed"</Description>
+              <LastState Value="2" RealAddress="179431C0"/>
+              <VariableType>Float</VariableType>
+              <Address>lpBasePointer</Address>
+              <Offsets>
+                <Offset>1c0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>51</ID>
+              <Description>"Move Speed Multiplier"</Description>
+              <LastState Value="1" RealAddress="179431C4"/>
+              <VariableType>Float</VariableType>
+              <Address>lpBasePointer</Address>
+              <Offsets>
+                <Offset>1C4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>50</ID>
               <Description>"Max HP"</Description>
-              <LastState Value="10000" RealAddress="16D70278"/>
+              <LastState Value="10000" RealAddress="17943278"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -376,7 +396,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>28</ID>
               <Description>"HP"</Description>
-              <LastState Value="10000" RealAddress="16D7027C"/>
+              <LastState Value="10000" RealAddress="1794327C"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -386,7 +406,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>25</ID>
               <Description>"Max Hunger"</Description>
-              <LastState Value="36000" RealAddress="16D70280"/>
+              <LastState Value="36000" RealAddress="17943280"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -396,7 +416,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>26</ID>
               <Description>"Hunger"</Description>
-              <LastState Value="36000" Activated="1" RealAddress="16D70284"/>
+              <LastState Value="36000" Activated="1" RealAddress="17943284"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBasePointer</Address>
               <Offsets>
@@ -409,7 +429,7 @@ dealloc(newmem)
           <ID>44</ID>
           <Description>"Pointer (Kepkerth.Tween)"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 
@@ -479,7 +499,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>43</ID>
               <Description>"Tween"</Description>
-              <LastState Value="36" RealAddress="17CCEDFC"/>
               <VariableType>4 Bytes</VariableType>
               <Address>lpBaseOfTweenText</Address>
               <Offsets>
