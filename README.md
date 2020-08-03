@@ -1,5 +1,7 @@
 # Keplerth-Cheat-Table
 
+![](https://steamcdn-a.akamaihd.net/steam/apps/747200/header.jpg)
+
 This script is developed by Cheat Engine 7.1 and only supports Cheat Engine 7.1 or above. Visit https://store.steampowered.com/app/747200/__Keplerth/ for more information.
 This script works only for Keplerth alpha 24b
 
