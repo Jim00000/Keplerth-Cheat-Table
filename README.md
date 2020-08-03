@@ -13,6 +13,7 @@ Open cheat engine, select "Keplerth" process, load this script and click "Mono" 
   - HP
   - Hungry
   - Tween
+  - Move Speed
   
 - Scripts
   - Max items/equips durability
